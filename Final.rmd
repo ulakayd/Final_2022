@@ -94,6 +94,11 @@ colPerc(table1)
 This table shows that drug use does not effect the effectiveness of the vaccine with the not effected being 91.60 and the effected being 8.40. 
 
 ## Inferential Results
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
 
 ## Discussion and Conclussion
 ## Males
