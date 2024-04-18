@@ -37,6 +37,35 @@ We want to know if there is a difference of drug effectiveness based on the popu
 
 ## Graphical Results
 
+## Sex
+
+```{r}
+barchartGC(~treatment + sex,data=FinalData)
+barchartGC(~treatment + sex,data=FinalData, type="percent")
+
+```
+
+
+In the chart it shows there is no difference between vaccine effectiveness in men and women both are at 50%.  
+ 
+## LGBTQ  
+```{r}
+barchartGC(~treatment + LGBTQ,data=FinalDat)
+barchartGC(~treatment + LGBTQ,data=FinalDat, type="percent")
+
+```
+
+This shows there is no difference in effectiveness of the vaccine based on sexual orientation.  
+
+## Druggies
+
+```{r}
+barchartGC(~treatment + DrugUser,data=FinalDat)
+barchartGC(~treatment + DrugUser,data=FinalDat, type="percent")
+
+```
+
+The graph shows that there was no difference in vaccine effectiveness based on a persons drug usage.
 ## Males
 
 ## Females
