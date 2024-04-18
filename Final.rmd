@@ -55,7 +55,7 @@ barchartGC(~treatment + LGBTQ,data=FinalDat, type="percent")
 
 ```
 
-This shows there is no difference in effectiveness of the vaccine based on sexual orientation.  
+This graph shows that there was no difference in effectiveness between straight people who took the vaccine versus straight people who took the placebo, and the the same can be said for gay people who took the vaccine and took the placebo. 
 
 ## Druggies
 
@@ -65,14 +65,7 @@ barchartGC(~treatment + DrugUser,data=FinalDat, type="percent")
 
 ```
 
-The graph shows that there was no difference in vaccine effectiveness based on a persons drug usage.
-## Males
-
-## Females
-
-## LGBTQ
-
-## Druggies
+This graph shows that there was no difference in vaccine effectiveness based on a persons drug usage. 
 
 ## Numerical Results
 
