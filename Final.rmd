@@ -55,7 +55,7 @@ barchartGC(~treatment + LGBTQ,data=FinalDat, type="percent")
 
 ```
 
-This graph shows that there was no difference in effectiveness between straight people who took the vaccine versus straight people who took the placebo, and the the same can be said for gay people who took the vaccine and took the placebo. 
+This graph shows that drug effectiveness is better in straight people versus in gay people, sexual orientation does seem to effect the effectiveness of the vaccine.
 
 ## Druggies
 
@@ -68,6 +68,30 @@ barchartGC(~treatment + DrugUser,data=FinalDat, type="percent")
 This graph shows that there was no difference in vaccine effectiveness based on a persons drug usage. 
 
 ## Numerical Results
+
+## Sex
+```{r}
+table1 <- xtabs(~treatment + sex, data=FinalDat)
+rowPerc(table1)
+colPerc(table1)
+```
+This table shows that vaccine effectiveness between men and women is only slightly higher in females at 50.04 versus with men it is 49.96 with a 0.08 percent difference.
+
+## LGBTQ
+```{r}
+table1 <- xtabs(~treatment + LGBTQ, data=FinalDat)
+rowPerc(table1)
+colPerc(table1)
+```
+The table shows that vaccine effectiveness is significantly greater in straight people at 92.47 than it is in gay people being at 7.53. We can see that sexual orientation does effect vaccine effectiveness.
+
+## Druggies
+```{r}
+table1 <- xtabs(~treatment + DrugUser, data=FinalDat)
+rowPerc(table1)
+colPerc(table1)
+```
+This table shows that drug use does not effect the effectiveness of the vaccine with the not effected being 91.60 and the effected being 8.40. 
 
 ## Inferential Results
 
