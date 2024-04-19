@@ -94,24 +94,45 @@ colPerc(table1)
 This table shows that drug use does not effect the effectiveness of the vaccine with the not effected being 91.60 and the effected being 8.40. 
 
 ## Inferential Results
+
+## Sex 
 ```{r}
 chisq.test(table1)
 chisqtestGC(table1)
 fisher.test(table1)
 ```
 
-## Discussion and Conclussion
-## Males
+The Chi-squared test p-value for sex is 0.267 which is greater than 0.05 which means we fail to reject the null hypothesis, and there is a difference in drug effectiveness based on sex.
 
+The P value = 0.2645 on the Fisher Exact Test which is greater than 0.05, we again fail to reject the null hypothesis with this information. 
 
-## Females
-
+The odds ration is 0.98 to 1 this means..
 
 ## LGBTQ
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
 
+The Chi-Squared test p-value is 0.147 which is greater than 0.05 which means we fail to reject the null hypothesis, there is a difference in vaccine effectiveness based on sexual orientation based on this information. 
 
+P Value = 0.1432 on the Fisher Exact Test shows that we still fail to reject the null hypothesis.
+
+The odds ratio is 0.947 to 1 this means..
 
 ## Druggies
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
 
+The Chi-squared test p-value is 0.9692 which is great that 0.05 which means we fail to reject the null hypothesis and there is a difference in vaccine effectiveness based on drug use. 
+
+P-value =0.9578 on the fisher exact test shows that we still fail to reject the null hypothesis.
+
+The odds ratio is 1.0 to 1 this means.. 
+## Discussion and Conclussion
 
 # Overall Results and Conclusions
