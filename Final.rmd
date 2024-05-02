@@ -37,61 +37,66 @@ We want to know if there is a difference of drug effectiveness based on the popu
 
 ## Graphical Results
 
-## Sex
+## Women
 
 ```{r}
-barchartGC(~treatment + sex,data=FinalData)
-barchartGC(~treatment + sex,data=FinalData, type="percent")
+dataF = filter(FinalData,sex=="F")
+
+barchartGC(~infected + treatment,data=dataF)
+barchartGC(~infected + treatment,data=dataF, type="percent")
 
 ```
 
-
-In the chart it shows there is no difference between vaccine effectiveness in men and women both are at 50%.  
+For women this bar chart shows that who recieved the vaccine have a higher effectiveness against covid19 than women who recieved the placebo. 
  
 ## LGBTQ  
 ```{r}
-barchartGC(~treatment + LGBTQ,data=FinalDat)
-barchartGC(~treatment + LGBTQ,data=FinalDat, type="percent")
+dataG = filter(FinalData,LGBTQ=="gay")
+
+barchartGC(~infected + treatment,data=dataG)
+barchartGC(~infected + treatment,data=dataG, type="percent")
 
 ```
 
-This graph shows that drug effectiveness is better in straight people versus in gay people, sexual orientation does seem to effect the effectiveness of the vaccine.
+This bar graph for LGBTQ shows that drug effectiveness within gay people that took the vaccine is not effective in protecting them from Covid19, those who took the vaccine had a high rate of catching covid19 versus those who took the placebo.
 
 ## Druggies
 
 ```{r}
-barchartGC(~treatment + DrugUser,data=FinalDat)
-barchartGC(~treatment + DrugUser,data=FinalDat, type="percent")
+dataD = filter(FinalData,DrugUser=="yes")
+
+barchartGC(~infected + treatment,data=dataD)
+barchartGC(~infected + treatment,data=dataD, type="percent")
 
 ```
 
-This graph shows that there was no difference in vaccine effectiveness based on a persons drug usage. 
+This bar graph for DrugUsers shows that those who took the vaccine had a high rate of catching the virus versus those who took the placebo. The vaccine was not as effective on those who where drug users.
 
 ## Numerical Results
 
 ## Sex
 ```{r}
-table1 <- xtabs(~treatment + sex, data=FinalDat)
+table1 <- xtabs(~infected + treatment, data=dataF)
 rowPerc(table1)
 colPerc(table1)
 ```
-This table shows that vaccine effectiveness between men and women is only slightly higher in females at 50.04 versus with men it is 49.96 with a 0.08 percent difference.
+This table shows that vaccine effectiveness in women who received the vaccine. 40 percent got covid19 with the vaccine while the other 60 percent who got the placebo got covid, this shows that there is a high effectiveness for women who take the vaccine.
 
 ## LGBTQ
 ```{r}
-table1 <- xtabs(~treatment + LGBTQ, data=FinalDat)
+table1 <- xtabs(~infected + treatment, data=dataG)
 rowPerc(table1)
 colPerc(table1)
 ```
-The table shows that vaccine effectiveness is significantly greater in straight people at 92.47 than it is in gay people being at 7.53. We can see that sexual orientation does effect vaccine effectiveness.
+The table shows that vaccine effectiveness in LGBTQ people. This table shows that gay people who the vaccine where 85% more likely to get covid than people who took the placebo, showing the vaccine effectiveness did was not effective on LGBTQ people. 
 
 ## Druggies
 ```{r}
-table1 <- xtabs(~treatment + DrugUser, data=FinalDat)
+table1 <- xtabs(~infected + treatment, data=dataD)
 rowPerc(table1)
 colPerc(table1)
 ```
-This table shows that drug use does not effect the effectiveness of the vaccine with the not effected being 91.60 and the effected being 8.40. 
+This table shows that DrugUsers who have taken the vaccine do no have vaccine effectiveness against covid19. 88% of DrugUsers who have taken the vaccine where shown to have gotten covid19 while 11% of DrugUsers who had taken the placebo contracted the virus.
 
 ## Inferential Results
 
@@ -102,11 +107,11 @@ chisqtestGC(table1)
 fisher.test(table1)
 ```
 
-The Chi-squared test p-value for sex is 0.267 which is greater than 0.05 which means we fail to reject the null hypothesis, and there is a difference in drug effectiveness based on sex.
+The Chi-squared test p-value for sex 0.0002732 which is less than 0.05 so we can reject the null hypothesis, there is a difference in those who where infected with covid19 that recieved the vaccine vs those who didnt.
 
-The P value = 0.2645 on the Fisher Exact Test which is greater than 0.05, we again fail to reject the null hypothesis with this information. 
+The P value = 0.0002162 on the Fisher Exact Test which is less than 0.05, we can again reject the null hypothesis with this information. 
 
-The odds ration is 0.98 to 1 this means..
+The odds ratio of the vaccine effectiveness against covid19 in women is 1.5 to 1. It has a strong chance of working.  
 
 ## LGBTQ
 ```{r}
@@ -115,11 +120,11 @@ chisqtestGC(table1)
 fisher.test(table1)
 ```
 
-The Chi-Squared test p-value is 0.147 which is greater than 0.05 which means we fail to reject the null hypothesis, there is a difference in vaccine effectiveness based on sexual orientation based on this information. 
+The Chi-Squared test p-value for LGBTQ is 0.00000006668 which is smaller than 0.05 which means we reject the null hypothesis, and there is a difference in people infected with covid19 based on the vaccine and those who did not receive the vaccine. 
 
-P Value = 0.1432 on the Fisher Exact Test shows that we still fail to reject the null hypothesis.
+P Value = 0.0000001029 on the Fisher Exact Test is less than 0.05 this shows that we still reject the null hypothesis.
 
-The odds ratio is 0.947 to 1 this means..
+The odds ratio of the vaccine effectiveness against covid19 in LGBTQ gay people is 0.19 to 1. It has a low chance of working.
 
 ## Druggies
 ```{r}
@@ -128,11 +133,19 @@ chisqtestGC(table1)
 fisher.test(table1)
 ```
 
-The Chi-squared test p-value is 0.9692 which is great that 0.05 which means we fail to reject the null hypothesis and there is a difference in vaccine effectiveness based on drug use. 
+The Chi-squared test p-value for drugUsers is 0.000000002842 which is less than 0.05 which means we reject the null hypothesis, there is a difference in those infected with covid19 who got the vaccine vs those who didnt.
 
-P-value =0.9578 on the fisher exact test shows that we still fail to reject the null hypothesis.
+P-value = 0.00000000232 on the fisher exact test is less than 0.05 this shows that we still reject the null hypothesis.
 
-The odds ratio is 1.0 to 1 this means.. 
-## Discussion and Conclussion
+The odds ratio of the vaccine effectiveness against covid19 in DrugUsers is 0.13 to 1. It has a low chance of working.
 
 # Overall Results and Conclusions
+
+Vaccine effectiveness against covid19 differs between Women, Gay people and DrugUsers.
+
+In women that took the vaccine we can conclude the vaccine is effective in preventing Covid19. We can prove this with the the odds ratio of 1.5 to 1 which means in women it has a high chance of effectiveness in prevention also p-value of 0.0002732 which is less than 0.05 which means we can reject the null hypothesis, that the vaccine is effective in preventing Covid19 in those that have recieved the vaccine vs those that havent.
+
+We can conclude that in LGBTQ gay people that have taken the vaccine, it had low odds of preventing Covid19 than those who didnt take the Vaccine. We can prove this with the odds ratio of
+0.19 to 1 which is a low chance of effectiveness and the p-value is 0.00000006668 which means we can reject the null hypothesis and show the vaccine has no effectiveness in gay people who took the vaccine in preventing covid19 vs those who didnt.  
+
+We are able to conclude that in DrugUsers that have taken the vaccine that it had low odds of preventing Covid19 than those whoe didnt take the vaccine, We can prove this with the given odds ratio of 0.13 to 1 which proves that the vaccine does not have high effectiveness. Lastly the p-value of 0.000000002842 shows that we are able to reject the null hypothesis and show the vaccine has no effectiveness in the drugusers who took the vaccine to prevent Covid19 vs those who didnt take the vaccine. 
